@@ -163,11 +163,13 @@ export const DirectedGraph = {
         // Number of pixels to use as a margin around the top and bottom of the graph.
         if (marginY) glLabel.marginy = marginY;
 
+        if(opt.disableOrdering) glLabel.disableOrdering = opt.disableOrdering;
+
         // Set the option object for the graph label.
         glGraph.setGraph(glLabel);
 
         // Executes the layout.
-        dagreUtil.layout(glGraph, { debugTiming: !!opt.debugTiming });
+        dagreUtil.layout(glGraph, { disableOrdering: opt.disableOrdering, debugTiming: !!opt.debugTiming });
 
         // Wrap all graph changes into a batch.
         graph.startBatch('layout');
